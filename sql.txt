@@ -1,0 +1,3 @@
+SELECT commentsforward.commentid commentsforward.comment
+FROM commentsforward
+RIGHT JOIN replyforw on commentsforward.commentid=commentsforward.commentid
