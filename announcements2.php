@@ -2,8 +2,10 @@
 session_start();
 
 if(!isset($_SESSION['username'])){
-    header("Location:login.php");
+    header("Location:announcements2.php");
 }
+
+
 require 'headerCSS_1.php' ;
 include_once 'connection.php';
 
@@ -52,17 +54,24 @@ function test_input($data){
 
 
 $count=1;
+
 $mysqli_query="Select * from commentsforward ";
 $result = mysqli_query($conn,$mysqli_query);
-while($row = mysqli_fetch_assoc($result)) { ?>
-    <?php  $row["id"]; ?><br>
+while($row = mysqli_fetch_assoc($result)) { 
+$suspend = "1";
+
+if ($suspend =="1") {
+  echo "You cannot post here at the moment!";
+}else{
+
+     $row["id"]; ?><br>
         <?php echo $row["username"]; ?><br>
        <?php echo $row["comment"]; ?><br>
        <?php echo $row["datetime"]; ?><br>
 <a href="editThreadForward.php?id=<?php echo $row["id"]; ?>">Edit</a>
 <a href="deleteCommentsForward.php?id=<?php echo $row["id"]; ?>">Delete</a>
 <?php  $count++; 
-} ?>
+} }?>
      
 
       <h2 class="h2">Comment here </h2>   
@@ -168,4 +177,3 @@ if(!confirm("Do you want to delete this user?")){
 <?php // including the css for the footer
 include 'footerCSS.php'; 
 ?>
-
