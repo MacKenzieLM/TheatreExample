@@ -1,6 +1,10 @@
 <?php
+session_start();
 require 'headerCSS_1.php' ;
 include_once 'connection.php';
+if(!isset($_SESSION['username'])){
+    header("Location:mousetrapReview2.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
