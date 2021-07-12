@@ -54,37 +54,26 @@ function test_input($data){
     return $data;
 }
 $count=1;
-$mysqli_query="Select userreg.usertype,moustrapcomments.username from userreg, moustrapcomments"
-        . "WHERE usertype = 'user'"; 
-
+$mysqli_query="Select * from moustrapcomments ";
 $result = mysqli_query($conn,$mysqli_query);
-while($row = mysqli_fetch_assoc($result)) { 
-    $usertype = "user";
-$suspend = "1";
-$upgrade = "1";
-$deleted = "1";
-if ($suspend =="1") {
-  echo "You cannot post here at the moment";
-}else{
-    if($upgrade == "1"){
-        echo "You can post a thread or keep commenting.";
-    }else{
-        if($deleted == "1"){
-            echo "Sorry, you can not post a thread or comment.";
-        }else{
-    
+while($row = mysqli_fetch_assoc($result)) { ?>
 
-     $row["id"]; ?><br>
-        <?php echo $row["username"]; ?><br>
-       <?php echo $row["comment"]; ?><br>
-       <?php echo $row["datetime"]; ?><br>
+ <?php    $row["id"];?><br>
+   <?php echo $row["username"]; ?><br>
+        <?php echo $row["comment"]; ?><br>
+        <?php echo $row["datetime"]; ?> <br> 
+       
+        
 <a href="editMousetrap.php?id=<?php echo $row["id"]; ?>">Edit</a>
-<a href="deleteMoustrap.php?id=<?php echo $row["id"]; ?>">Delete</a>
-<?php  $count++; 
-        }   }  }}?>
+<a href="deleteMousetrapComments.php?id=<?php echo $row["id"]; ?>">Delete</a>
 
+    <?php 
+    $count++;  
+} ?>
 
+      
 
+ 
   
       <h2 class="h2">Comment here </h2>   
       <p> Post your comments below.  Remember, keep it respectful.</p>
