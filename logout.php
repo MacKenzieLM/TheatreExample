@@ -1,15 +1,10 @@
 <?php
-
+ session_start();
+ session_unset();
+ session_destroy();
 require 'headerCSS_1.php' ;
-include_once 'connection.php';
 
-// destroy the session
-if(isset($_POST['logout'])){
-// session_start();
-// session_unset();
- session_destroy(); 
 
-}
 
 ?>
 

@@ -2,8 +2,8 @@
 
 include_once 'connection.php';
 
-$threadid=$_REQUEST['threadid'];
-$query = "DELETE FROM newthread WHERE threadid=$threadid"; 
+$id=$_REQUEST['id'];
+$query = "DELETE FROM newthread WHERE id=$id"; 
 $result = mysqli_query($conn,$query);
-header("Location: processThread.php"); 
+header("Location: announcements2.php"); 
 ?>

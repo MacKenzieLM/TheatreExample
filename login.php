@@ -4,9 +4,11 @@
    require 'headerCSS_1.php';
     require 'connection.php';
 
-//if(isset($_SESSION['username'])){
-//    echo "Welcome " . $_SESSION['username'];
-//}
+if(isset($_SESSION['username'])){
+  echo "Welcome " . $_SESSION['username'];
+
+  
+}
     ?>
 
 <!--styling the page title -->

@@ -1,13 +1,56 @@
 <?php
 session_start();
-if(!isset($_SESSION['username']))
+if(!isset($_SESSION['username'])){
 header("Location:login.php");
+}
 
 require 'headerCSS_1.php' ;
 include_once 'connection.php';
 
-?>
-     
+
+//if(!isset($_SESSION['usertype'])){
+//    header("location:announcements2.php");
+//} 
+
+$mysqli_query="update * from userreg ";
+$result = mysqli_query($conn,$mysqli_query);
+while($row = mysqli_fetch_assoc($result)) { 
+    $usertype = "admin";
+    $suspend = "1";
+    $upgrade = "1";
+    $deleted = "1";
+        if (!$usertype =="admin") {
+        echo "Sorry, only admin can post new threads!";
+        header("location: announcements2.php");
+        }else{
+            if($usertype == "user" && $upgrade == "1"){
+        echo "You can post a thread or keep commenting.";
+        }else{
+            if($usertype == "user" && $suspend == "1"){
+            echo "Sorry, you can not post a thread or comment.";
+            }else{
+                if($usertype == "user" && $deleted == "1"){
+                echo "Sorry, you can not post a thread or comment.";
+                }else{
+   
+        
+    
+
+
+
+ $row["id"]; ?><br>
+        <?php echo $row["username"]; ?><br>
+       <?php echo $row["comment"]; ?><br>
+       <?php echo $row["datetime"]; ?><br>
+<a href="editThreadForward.php?id=<?php echo $row["id"]; ?>">Edit</a>
+<a href="deleteCommentsForward.php?id=<?php echo $row["id"]; ?>">Delete</a>
+<?php  $count++; 
+ } 
+  } 
+    }
+      }
+        }?>
+
 
 
 <!DOCTYPE html>
@@ -18,7 +61,7 @@ include_once 'connection.php';
       <h2 class="h2">Post Thread</h2>   
       <p> Post your thread below.  Remember, keep it respectful.</p>
    
-      <form action="processNewThread.php" method="post"> 
+      <form action="announcements2.php" method="post"> 
           <input type="hidden" name="id" id="id" value="0" />  
           
         <label for="username">Username</label>
